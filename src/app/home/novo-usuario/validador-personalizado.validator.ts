@@ -1,4 +1,9 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+} from '@angular/forms';
 
 export function validadorSenha(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -24,6 +29,17 @@ export function minusculoValidator(control: AbstractControl) {
   const valor = control.value as string;
   if (valor !== valor.toLowerCase()) {
     return { minusculo: true };
+  } else {
+    return null;
+  }
+}
+
+export function usuarioSenhaIguaisValidator(formGroup: FormGroup) {
+  const username = formGroup.get('userName')?.value ?? '';
+  const password = formGroup.get('password')?.value ?? '';
+
+  if (username.trim() + password.trim()) {
+    return username !== password ? null : { senhaIgualUsuario: true };
   } else {
     return null;
   }
