@@ -3,6 +3,9 @@ import { TokenService } from './../token.service';
 import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+const API = environment.apiURL;
 
 @Injectable({
   providedIn: 'root',
